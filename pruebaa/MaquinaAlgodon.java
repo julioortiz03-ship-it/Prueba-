@@ -1,22 +1,9 @@
 public class MaquinaAlgodon extends Maquina {
 
-    private final int potenciaVatios;
+    private int potenciaVatios;
 
-    public MaquinaAlgodon(
-            String codigo,
-            String marca,
-            String modelo,
-            double tarifaDiaria,
-            int potenciaVatios) {
-
+    public MaquinaAlgodon(String codigo, String marca, String modelo, double tarifaDiaria, int potenciaVatios) {
         super(codigo, marca, modelo, tarifaDiaria);
-
-        if (potenciaVatios <= 0) {
-            throw new IllegalArgumentException(
-                    "La potencia debe ser mayor que cero."
-            );
-        }
-
         this.potenciaVatios = potenciaVatios;
     }
 
@@ -26,7 +13,7 @@ public class MaquinaAlgodon extends Maquina {
 
     @Override
     public String getCategoria() {
-        return "Máquina de algodón de azúcar";
+        return "Maquina de algodon de azucar";
     }
 
     @Override
@@ -36,7 +23,9 @@ public class MaquinaAlgodon extends Maquina {
 
     @Override
     public double calcularCosto(int dias) {
-        validarDias(dias);
+        if (dias <= 0) {
+            return 0;
+        }
 
         double total = getTarifaDiaria() * dias;
 
